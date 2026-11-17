@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>Vura E-Book Store | ආරක්ෂිත E-Book බෙදාහැරීමේ පද්ධතිය</title>
+    <title>Vura E-Book Store </title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- pdf-lib for Client-Side PDF Watermarking -->
@@ -123,13 +123,13 @@
             <div class="text-center max-w-2xl mx-auto mb-8 sm:mb-12">
                 <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-[11px] sm:text-xs font-medium mb-3 sm:mb-4">
                     <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
-                    <span>Verified Digital Editions • Watermark Protected</span>
+                    <span>Verified Digital Editions</span>
                 </div>
                 <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-white mb-2.5 sm:mb-3 leading-snug">
-                    නිකුත් කළ <span class="gold-text">E-Books</span> එකතුව
+                    Collection of released <span class="gold-text">E-Books</span>
                 </h1>
                 <p class="text-zinc-400 text-xs sm:text-base leading-relaxed px-2">
-                    ඔබ මිලදී ගත් පොත තෝරා <strong>Download</strong> බොත්තම ඔබන්න. ඔබගේ නම, ලියාපදිංචි අංකය (Reg No) සහ ඔබට ලැබුණු PIN අංකය ඇතුළත් කර PDF ගොනුව ලබාගන්න.
+                    ඔබ අවශ්‍යය පොත තෝරා <strong>Download</strong> Button එක Click කරන්න. ඔබගේ නම, ලියාපදිංචි අංකය (Reg No) සහ ඔබට ලැබුණු PIN අංකය ඇතුළත් කර PDF File එක ලබාගන්න.
                 </p>
             </div>
             <div id="booksGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-7"></div>
@@ -151,18 +151,18 @@
 
             <form id="downloadForm" onsubmit="handleDownloadSubmit(event)" class="p-5 sm:p-6 space-y-4 overflow-y-auto">
                 <div class="bg-zinc-950/80 border border-zinc-800 rounded-xl p-3.5">
-                    <span class="text-[11px] text-zinc-400 block">තෝරාගත් පොත:</span>
+                    <span class="text-[11px] text-zinc-400 block">Selected book:</span>
                     <h4 id="modalBookTitle" class="text-sm font-bold text-white mt-0.5 leading-snug">Book Title</h4>
                 </div>
 
                 <div>
                     <label for="userName" class="block text-xs font-semibold text-zinc-300 mb-1.5">1. ඔබගේ නම (Full Name) <span class="text-red-500">*</span></label>
-                    <input type="text" id="userName" required placeholder="උදා: Kasun Perera" class="w-full bg-zinc-950 border border-zinc-700 focus:border-amber-500 rounded-xl px-4 py-3 text-sm text-white placeholder-zinc-600 outline-none">
+                    <input type="text" id="userName" required placeholder="උදා: Bihindu Kalupahana" class="w-full bg-zinc-950 border border-zinc-700 focus:border-amber-500 rounded-xl px-4 py-3 text-sm text-white placeholder-zinc-600 outline-none">
                 </div>
 
                 <div>
                     <label for="userRegNo" class="block text-xs font-semibold text-zinc-300 mb-1.5">2. ලියාපදිංචි අංකය (Reg No) <span class="text-red-500">*</span></label>
-                    <input type="text" id="userRegNo" required placeholder="උදා: REG-2026-045" class="w-full bg-zinc-950 border border-zinc-700 focus:border-amber-500 rounded-xl px-4 py-3 text-sm text-white placeholder-zinc-600 outline-none uppercase">
+                    <input type="text" id="userRegNo" required placeholder="උදා: V-001-2026" class="w-full bg-zinc-950 border border-zinc-700 focus:border-amber-500 rounded-xl px-4 py-3 text-sm text-white placeholder-zinc-600 outline-none uppercase">
                 </div>
 
                 <div>
@@ -174,7 +174,7 @@
 
                 <button type="submit" id="finalDownloadBtn" class="w-full gold-gradient text-black font-bold py-3.5 px-4 rounded-xl shadow-lg shadow-amber-500/20 transition-all flex items-center justify-center gap-2 text-sm">
                     <i data-lucide="download" class="w-4 h-4"></i>
-                    <span>Download Watermarked PDF</span>
+                    <span>Download Book</span>
                 </button>
             </form>
         </div>
@@ -263,14 +263,14 @@
 
             if (enteredPin !== CONFIG.MASTER_PIN) {
                 statusBox.className = "rounded-xl p-3 text-xs font-medium flex items-center gap-2 bg-red-500/15 border border-red-500/30 text-red-400";
-                statusBox.innerHTML = `ඇතුළත් කළ PIN අංකය වැරදිය!`;
+                statusBox.innerHTML = `ඇතුළත් කළ PIN අංකය වැරදියි!`;
                 return;
             }
 
             try {
                 btn.disabled = true;
                 statusBox.className = "rounded-xl p-3 text-xs font-medium flex items-center gap-2 bg-amber-500/15 border border-amber-500/30 text-amber-300";
-                statusBox.innerHTML = `PDF ගොනුව සකසමින් පවතී...`;
+                statusBox.innerHTML = `ඔබගේ තොරතුරු පරීක්ෂා කරමින් පවතී...`;
 
                 const pdfBytes = await fetch(selectedBook.pdfPath).then(res => {
                     if (!res.ok) throw new Error("PDF not found");
@@ -321,7 +321,7 @@
             } catch (err) {
                 console.error(err);
                 statusBox.className = "rounded-xl p-3 text-xs font-medium flex items-center gap-2 bg-red-500/15 border border-red-500/30 text-red-400";
-                statusBox.innerHTML = `PDF ගොනුව සොයාගත නොහැක! books ෆෝල්ඩරය පරීක්ෂා කරන්න.`;
+                statusBox.innerHTML = `PDF ගොනුව සොයාගත නොහැක!`;
             } finally {
                 btn.disabled = false;
             }
